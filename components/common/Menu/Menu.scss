@@ -1,0 +1,25 @@
+
+.menu__top__list__item--active {
+    background-color: hsla(0,0%,100%,0.1);
+    
+    border-left: 3px solid rgb(124, 6, 118);;
+}
+@media (max-width: 1024){
+    .menu {
+        width: 72px;
+        animation-name: reponsiveMenu;
+        animation-duration: 2s;
+
+        
+    }
+}
+
+@keyframes reponsiveMenu{
+    0%{
+        opacity: 1;
+        transform: translateX(50%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}

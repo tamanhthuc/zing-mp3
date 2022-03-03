@@ -1,0 +1,112 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  // background-color: rgb(23, 15, 35) !important;
+  
+}
+ul {
+  list-style-type: none;
+}
+html {
+// background-color: rgb(23, 15, 35);
+  
+
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color:  rgb(23, 15, 35);
+}
+
+body::-webkit-scrollbar
+{
+	width: 4px;
+	background-color:  rgb(23, 15, 35);;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+
+
+
+
+
+
+.App {
+  position: relative;
+  max-width: 100%;
+  // background-color: rgb(23, 15, 35);
+
+}
+
+.div__menu {
+  z-index: 1;
+  position: relative;
+  
+}
+
+
+
+.container {
+  display: flex;
+}
+
+.div__mainPage {
+  width: 100%;
+  max-width: 85%;
+  margin-left: 242px;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .div__mainPage {
+    margin-left: 72px;
+  }
+}
+
+.div__song {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  // background-color:rgb(23, 15, 35);
+  transition: 1s;
+  cursor: pointer;
+}
+
+// .div__playlist {
+//   height: 100%;
+//   width: 100%;
+// }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#upload {
+  display: none;
+}
+.upload {
+  // display: block;
+  width: 55px;
+  height: 15px;
+  background-color: hsla(0,0%,100%,0.1);
+  margin-right: 20px;
+  color: #fff;
+  padding: 8px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,45 @@
+.more {
+  
+
+  width: 250pxx;
+  height: 220px;
+  background-color: rgba(67, 34, 117, 1);
+  border-radius: 10px;
+  display: none;
+
+  &__list {
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      padding: 5px 0;
+     
+    
+      &:hover {
+          background-color:  rgba(194, 194, 194, 0.6);
+      }
+
+      &__icon {
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transform: scale(0.8);
+      }
+      &__name {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 10px;
+       padding-right: 30px;
+        text-align: center;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+ul {
+  padding: 0;
+}

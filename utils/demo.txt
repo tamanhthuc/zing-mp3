@@ -1,0 +1,28 @@
+
+<div>
+    <ThemeProvider>
+        <div>blabla</div>
+    </ThemeProvider>
+</div>
+
+const ThemeContext = React.useContext(null)
+
+export const ThemeProvider = () => {
+    const [backgroundUrl, setBackgroundUrl] = React.useState('')
+    return (
+        <ThemeContext.Provider value={{
+            backgroundUrl,
+            setBackgroundUrl,
+        }}>
+            <MyComponent />
+        </ThemeContext.Provider>
+    );
+}
+
+export const useTheme = () => React.useContext(ThemeContext)
+
+import { useThem } from '../libs/theme'
+
+// useage
+const { backgroundUrl, setBackgroundUrl } = useThem()
+

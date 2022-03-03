@@ -1,0 +1,40 @@
+.theme__item {
+    position: relative;
+    top: 15px;
+    width: 100%;
+    
+
+    &__img {
+        & img {
+            height: 83px;
+            width: 125px;
+            border-radius: 4px;
+        }
+    }
+
+    &__label {
+        font-size: 14px
+    }
+    &__button {
+        position: absolute;
+        cursor: pointer;
+        width: 90px;
+        height: 20px;
+        border-radius: 8px;
+        top: 40%;
+        left: 45%;
+        display: none;
+        transform: translate(-50%, -50%);
+        & span {
+            display: block;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            text-transform: capitalize;
+            line-height: 20px;
+        }
+    }
+    &:hover &__button {
+        display: block;
+    }
+}
