@@ -3,6 +3,7 @@ import { MainLayout } from '../components/layout';
 import { Box } from '@mui/system';
 import axios from 'axios';
 import Head from 'next/head';
+
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDataMusic } from '../redux/actions/music';
