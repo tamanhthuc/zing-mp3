@@ -1,7 +1,7 @@
 import '../components/Button/Button.scss';
 import '../components/Chart/Chart.scss';
-import '../components/common/BassMusic/BassMusic.scss';
-import '../components/common/Header/Header.scss';
+import '../components/common/BassMusic/bassmusic.scss';
+import '../components/common/header/Header.scss';
 import '../components/common/ListMusic/listmusic.scss';
 import '../components/common/Menu/Menu.scss';
 import '../components/common/PlayList/playlist.scss';
@@ -15,7 +15,7 @@ import '../components/MusicItem/musicitem.scss';
 import '../components/Search/Search.scss';
 import '../components/slider/Slider.scss';
 import '../components/Top/Top.scss';
-import '../components/WatchMore/WatchMore.scss';
+import '../components/WatchMore/watchmore.scss';
 import { CacheProvider } from '@emotion/react';
 import { AppPropsWithLayout } from '../models/common';
 import CssBaseline from '@mui/material/CssBaseline';
