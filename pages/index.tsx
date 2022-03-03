@@ -30,13 +30,14 @@ const Home = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Box>
-        <MainPage />
+        {/* <MainPage /> */}
       </Box>
     
     </Box>
     // </ModelProvider>
   );
 };
+
 Home.Layout = MainLayout;
 
 

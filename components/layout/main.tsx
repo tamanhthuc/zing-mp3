@@ -55,14 +55,14 @@ export function MainLayout({ children }: LayoutProps) {
   const singerModel = useSelector((state:IRootState) => state.models.singerModel);
  
   const songRef = useRef<HTMLImageElement>(null);
-  const getListMusic = async () => {
-    const res: any = await musicService.getList(API_URL.music.getList());
-    setLists(res);
-  };
+  // const getListMusic = async () => {
+  //   const res: any = await musicService.getList(API_URL.music.getList());
+  //   setLists(res);
+  // };
 
-  useEffect(() => {
-    getListMusic();
-  }, []);
+  // useEffect(() => {
+  //   getListMusic();
+  // }, []);
 
   const next = useSelector((state: IRootState) => state.music.next);
 
@@ -119,30 +119,30 @@ export function MainLayout({ children }: LayoutProps) {
       <Box className="App">
         <Box className="container">
           <Box className="div__menu">
-            <Menu />
+            {/* <Menu /> */}
           </Box>
 
           <Box className="div__mainPage">
             <Header />
-            {searchMusics.length === 0 ? <Box>{children}</Box> : <Search />}
+            {/* {searchMusics.length === 0 ? <Box>{children}</Box> : <Search />} */}
           </Box>
 
           <Box className="div__playlist">
-            <PlayList />
+            {/* <PlayList /> */}
           </Box>
 
           <Box className="div__song" ref={songRef} style={styleDivSong}>
-            {setTrackSong()}
+            {/* {setTrackSong()} */}
           </Box>
         </Box>
 
-        {modelNow && (
+        {/* {modelNow && (
           <Box className="div__model" onClick={() => dispatch(setModelAgain(false))}>
             <ModelTheme />
           </Box>
-        )}
+        )} */}
 
-        {songModel?.id > 0 && (
+        {/* {songModel?.id > 0 && (
           <div className="">
             <div
               className="model__slider"
@@ -153,9 +153,9 @@ export function MainLayout({ children }: LayoutProps) {
               <ModelSlider songModel={songModel} />
             </div>
           </div>
-        )}
+        )} */}
 
-        {singerModel?.id > 0 && (
+        {/* {singerModel?.id > 0 && (
           <Box
             sx={{
               position: 'fixed',
@@ -175,7 +175,7 @@ export function MainLayout({ children }: LayoutProps) {
           >
             <ModelSinger singerModel={singerModel} />
           </Box>
-        )}
+        )} */}
       </Box>
     </ModelProvider>
   );

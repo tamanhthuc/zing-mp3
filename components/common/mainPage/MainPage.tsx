@@ -7,7 +7,7 @@ export default function MainPage() {
   return (
     <Box sx={{ height: '100vh', position: 'relative' }}>
       <Slider />
-      {/* <ListMusic /> */}
+      <ListMusic />
     </Box>
   );
 }
