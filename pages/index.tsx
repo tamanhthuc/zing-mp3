@@ -7,6 +7,7 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDataMusic } from '../redux/actions/music';
+import { ModelProvider } from '../context/ModelContext';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,26 +21,23 @@ const Home = () => {
   };
   useEffect(() => {
     getData();
-  },[]);
- 
+  }, []);
+
   return (
-    // <ModelProvider>
-    <Box className="App">
-      <Head>
-        <title>zingmp3</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Box>
-        {/* <MainPage /> */}
+    <ModelProvider>
+      <Box className="App">
+        <Head>
+          <title>zingmp3</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <Box>
+          <MainPage />
+        </Box>
       </Box>
-    
-    </Box>
-    // </ModelProvider>
+    </ModelProvider>
   );
 };
 
 Home.Layout = MainLayout;
-
-
 
 export default Home;

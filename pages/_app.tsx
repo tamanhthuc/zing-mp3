@@ -23,7 +23,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { ThemeProvider1 } from '../context/ThemeContext';
 import { ToastContainer, toast } from 'react-toastify';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'swiper/css';
 import { wrapper } from '../redux/store';
 import '../styles/globals.scss';
@@ -38,14 +38,22 @@ const clientSideEmotionCache = createEmotionCache();
 export function MyApp(props: AppPropsWithLayout) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const Layout = Component.Layout ?? EmptyLayout;
+
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles?.parentElement?.removeChild(jssStyles);
+    }
+  }, []);
   
   return (
-    <CacheProvider value={emotionCache}>
+    <>
       <Head>
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider1>
+     
       
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -56,8 +64,8 @@ export function MyApp(props: AppPropsWithLayout) {
           <ToastContainer />
         </ThemeProvider>
         
-      </ThemeProvider1>
-    </CacheProvider>
+     
+    </>
   );
 }
 
