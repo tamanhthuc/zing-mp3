@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModelAgain } from '../../redux/actions/model';
 import { IRootState } from '../../redux/reducers';
+import { setTheme } from '../../redux/actions/theme';
 
 
 export interface IThemeItemProps {}
@@ -24,6 +25,7 @@ export default function ThemeItem({ themeImg }: themeImgProps) {
 
   const handleClick = () => {
     setBackgroundUrl(themeImg.bgColor);
+    dispatch(setTheme(themeImg.bgColor))
     localStorage.setItem('backGround', JSON.stringify(themeImg.bgColor));
     dispatch(setModelAgain(!model));
   };

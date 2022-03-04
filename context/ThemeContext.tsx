@@ -26,7 +26,19 @@ function ThemeProvider1({ children }: any) {
   //  }
   // });
 
-const [backgroundUrl, setBackgroundUrl] = useState("#170f23")
+const [backgroundUrl, setBackgroundUrl] = useState(() =>{
+  let theme = ''
+  if (typeof window !== 'undefined') {
+
+    if (localStorage.getItem("backGround") !== null){
+      theme =  JSON.parse(localStorage.getItem("backGround") ?? '') 
+    }
+   
+    return (theme === '' ? '#170f23' : theme);
+}
+
+  return theme;
+})
   
   return (
     <ThemeContext.Provider

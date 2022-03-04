@@ -53,7 +53,7 @@ export function MainLayout({ children }: LayoutProps) {
   const [lists, setLists] = useState<MusicListProps[] | []>([]);
   const songModel = useSelector((state: IRootState) => state.models.songModel);
   const singerModel = useSelector((state:IRootState) => state.models.singerModel);
- 
+  const themeCurrent = useSelector((state:IRootState) => state.theme.theme)
   const songRef = useRef<HTMLImageElement>(null);
   const getListMusic = async () => {
     const res: any = await musicService.getList(API_URL.music.getList());
@@ -101,9 +101,9 @@ export function MainLayout({ children }: LayoutProps) {
   useEffect(() => {
     if (songRef.current){
 
-      songRef.current.style.background = backgroundUrl;
+      songRef.current.style.background = `${themeCurrent}`;
     }
-  }, [backgroundUrl]);
+  }, [themeCurrent]);
 
   useEffect(() => {
     if (songModel?.id > 0 ) {

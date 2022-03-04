@@ -21,6 +21,7 @@ import { isRunning, Next } from '../../../redux/actions/music';
 import { addYourPlaylists, listenedPlaylists, setOpenPlaylists } from '../../../redux/actions/playlists';
 import { IRootState } from '../../../redux/reducers';
 import { IsongProps } from '../ListMusic/ListMusic';
+import { ThemeContext } from '@emotion/react';
 interface IMusicProps {
   tracks: IsongProps[];
 }
@@ -140,12 +141,15 @@ export default function Song({ tracks }: IMusicProps) {
     dispatch(addYourPlaylists(song));
   };
 
-  const value= useContext(ModelContext);
+  // const value= useContext(ModelContext);
+  const songRef = useRef()
+  const {backgroundUrl, setBackgroundUrl}:any = useContext(ThemeContext)
+
   
   return (
     <>
       {tracks.length !== 0 ? (
-        <Box className="song">
+        <Box className="song" ref={songRef}>
           <Box className="song__info">
             <Box className="song__info__singer">
               <Box
