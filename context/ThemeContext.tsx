@@ -19,13 +19,14 @@ const ThemeContext = createContext({});
 function ThemeProvider1({ children }: any) {
   let item: string;
  
-  const [backgroundUrl, setBackgroundUrl] = useState(() => {
-    if (typeof window !== 'undefined') {
-      item = JSON.parse(localStorage.getItem("backGround") ?? '') || '#170f23';
-      return item 
-   }
-  });
+  // const [backgroundUrl, setBackgroundUrl] = useState(() => {
+  //   if (typeof window !== 'undefined') {
+  //     item = JSON.parse(localStorage.getItem("backGround") ?? '') || '#170f23';
+  //     return item 
+  //  }
+  // });
 
+const [backgroundUrl, setBackgroundUrl] = useState("#170f23")
   
   return (
     <ThemeContext.Provider
