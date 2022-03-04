@@ -21,7 +21,7 @@ function ThemeProvider1({ children }: any) {
  
   const [backgroundUrl, setBackgroundUrl] = useState(() => {
     if (typeof window !== 'undefined') {
-      item = JSON.parse(localStorage.getItem("backGround") ?? '');
+      item = JSON.parse(localStorage.getItem("backGround") ?? '') || '#170f23';
       return item 
    }
   });
