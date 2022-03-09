@@ -1,5 +1,5 @@
 import Header from '../common/header/Header';
-import  IsongProps  from '../../types/Song.type';
+import IsongProps from '../../types/Song.type';
 import Menu from '../common/Menu/Menu';
 import PlayList from '../common/PlayList/PlayList';
 import Song from '../common/Song/Song';
@@ -20,8 +20,6 @@ import { setRunning } from '../../redux/actions/music';
 import { IRootState } from '../../redux/reducers';
 import musicService from '../../service/musicService';
 import { ThemeContext, ThemeProvider1 } from '../../context/ThemeContext';
-
-
 
 const config = {
   apiKey: 'AIzaSyBLR4nRVuEodf0_cWP4HerFqU6RXyx49Q0',
@@ -52,8 +50,8 @@ export function MainLayout({ children }: LayoutProps) {
   const dataMusic = useSelector((state: IRootState) => state.music.musics);
   const [lists, setLists] = useState<MusicListProps[] | []>([]);
   const songModel = useSelector((state: IRootState) => state.models.songModel);
-  const singerModel = useSelector((state:IRootState) => state.models.singerModel);
-  const themeCurrent = useSelector((state:IRootState) => state.theme.theme)
+  const singerModel = useSelector((state: IRootState) => state.models.singerModel);
+  const themeCurrent = useSelector((state: IRootState) => state.theme.theme);
   const songRef = useRef<HTMLImageElement>(null);
   const getListMusic = async () => {
     const res: any = await musicService.getList(API_URL.music.getList());
@@ -99,75 +97,76 @@ export function MainLayout({ children }: LayoutProps) {
   const value = useContext(ThemeContext);
   const { backgroundUrl, setBackgroundUrl }: any = value;
   useEffect(() => {
-    if (songRef.current){
-
+    if (songRef.current) {
       songRef.current.style.background = `${themeCurrent}`;
     }
   }, [themeCurrent]);
 
   useEffect(() => {
-    if (songModel?.id > 0 ) {
+    if (songModel?.id > 0) {
       document.body.style.overflow = 'hidden';
     }
     return () => {
       document.body.style.overflow = 'scroll';
     };
-  }, [songModel,singerModel]);
+  }, [songModel, singerModel]);
 
   return (
     <ThemeProvider1>
+      <ModelProvider>
+        <Box className="App">
+          <Box className="container">
+            <Box className="div__menu">
+              <Menu />
+            </Box>
 
-    <ModelProvider>
-      <Box className="App">
-        <Box className="container">
-          <Box className="div__menu">
-            <Menu />
+            <Box className="div__mainPage">
+              <Header />
+              {searchMusics.length === 0 ? <Box>{children}</Box> : <Search />}
+            </Box>
+
+            <Box className="div__playlist">
+              <PlayList />
+            </Box>
+
+            <Box className="div__song" ref={songRef} style={styleDivSong}>
+              {setTrackSong()}
+            </Box>
           </Box>
 
-          <Box className="div__mainPage">
-            <Header />
-            {searchMusics.length === 0 ? <Box>{children}</Box> : <Search />}
-          </Box>
+          {modelNow && (
+            <Box className="div__model" onClick={() => dispatch(setModelAgain(false))}>
+              <ModelTheme />
+            </Box>
+          )}
 
-          <Box className="div__playlist">
-            <PlayList />
-          </Box>
+          {songModel?.id > 0 && (
+            <div className="">
+              <div
+                className="model__slider"
+                onClick={() =>
+                  dispatch(setSongModel({ id: '', name: '', song: '', singer: '', image: '' }))
+                }
+              >
+                <ModelSlider songModel={songModel} />
+              </div>
+            </div>
+          )}
 
-          <Box className="div__song" ref={songRef} style={styleDivSong}>
-            {setTrackSong()}
-          </Box>
-        </Box>
-
-        {modelNow && (
-          <Box className="div__model" onClick={() => dispatch(setModelAgain(false))}>
-            <ModelTheme />
-          </Box>
-        )}
-
-        {songModel?.id > 0 && (
-          <div className="">
-            <div
-              className="model__slider"
+          {singerModel?.id > 0 && (
+            <Box
+              className="model__singer"
               onClick={() =>
-                dispatch(setSongModel({ id: '', name: '', song: '', singer: '', image: '' }))
+                dispatch(
+                  setSingerModel({ name: '', id: '', image: '', avatar: '', message: '', time: '' })
+                )
               }
             >
-              <ModelSlider songModel={songModel} />
-            </div>
-          </div>
-        )}
-
-        {singerModel?.id > 0 && (
-          <Box
-            
-            className="model__singer"
-            onClick={() => dispatch(setSingerModel({name: "", id: "", image:"", avatar: "", message: "", time: ""}))}
-          >
-            <ModelSinger singerModel={singerModel} />
-          </Box>
-        )}
-      </Box>
-    </ModelProvider>
+              <ModelSinger singerModel={singerModel} />
+            </Box>
+          )}
+        </Box>
+      </ModelProvider>
     </ThemeProvider1>
   );
 }
