@@ -1,4 +1,4 @@
-import  IsongProps  from '../../types/Song.type';
+import IsongProps from '../../types/Song.type';
 import { AnyAction } from 'redux';
 
 interface initialProps {

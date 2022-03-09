@@ -142,6 +142,7 @@
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
+     
 
       @include mobile {
         color: #32323d;
@@ -157,6 +158,9 @@
       line-height: 1.33;
       font-weight: 400;
       color: hsla(0, 0%, 100%, 0.5);
+      overflow: hidden;
+      white-space: nowrap; /* Don't forget this one */
+      text-overflow: ellipsis;
 
       @include mobile {
         color: #a0a0a0;
