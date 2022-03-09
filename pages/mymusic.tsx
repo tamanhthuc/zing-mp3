@@ -108,13 +108,20 @@ export default function MyMusic() {
     toast.success('Remove Notification !');
   };
 
+  useEffect(() => {
+    if (!isSign){
+      router.push("/sign-in")
+    }
+  },[isSign])
+
+
   if (isSign) {
     return (
       <>
         <Box className="mymusic">
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {info && info.photoURL && (
-              <Avatar alt="Thuc" src={info.photoURL} sx={{width: 60, height: 60, mt: 5}} />
+              <Avatar alt="Thuc" src={info.photoURL} sx={{ width: 60, height: 60, mt: 5 }} />
             )}
           </Box>
 
@@ -140,7 +147,7 @@ export default function MyMusic() {
               mr: '20px',
             }}
           >
-            <Box >
+            <Box>
               <Button name="NÂNG CẤP VIP" />
             </Box>
             <Box sx={{ ml: '15px' }}>
@@ -286,16 +293,22 @@ export default function MyMusic() {
             Để sử dụng tất cả các tính năng, bạn vui lòng sử dụng ứng dụng Zing MP3
           </div>
 
-          <a className="mymusic__mobile__button" href='https://apps.apple.com/VN/app/id992357547?mt=8'>
-                <img src="https://static-zmp3.zadn.vn/skins/zmp3-mobile-v5.2/images/logo-mp-3.png" alt="" />
+          <a
+            className="mymusic__mobile__button"
+            href="https://apps.apple.com/VN/app/id992357547?mt=8"
+          >
+            <img
+              src="https://static-zmp3.zadn.vn/skins/zmp3-mobile-v5.2/images/logo-mp-3.png"
+              alt=""
+            />
 
-                <div className="mymusic__mobile__button__name">Mở Zing MP3</div>
+            <div className="mymusic__mobile__button__name">Mở Zing MP3</div>
           </a>
         </div>
       </>
     );
-  }
-  return <Box>Ban phai dang nhap</Box>;
+  } 
+  return <Box>Ban Phai dang nhap moi vao duoc</Box>
 }
 
 MyMusic.Layout = MainLayout;

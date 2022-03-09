@@ -1,7 +1,8 @@
+import { Box } from '@mui/material';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { useRouter } from 'next/router';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../redux/reducers';
@@ -27,13 +28,16 @@ export default function SignIn (props: ISignInProps) {
 
   const router = useRouter();
   
-  if (isSign){
-    router.push('/mymusic')
-  }
+  useEffect(() => {
+
+    if (isSign){
+      router.push('/mymusic')
+    }
+  }, [isSign])
 
   return (
-    <div>
+    <Box >
        {!isSign && <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />}
-    </div>
+    </Box>
   );
 }

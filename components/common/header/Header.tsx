@@ -23,7 +23,6 @@ import { ROUTE_LIST } from '../Menu/routes';
 import { ROUTE_LIST__BOTTOM } from '../Menu/routesBottom';
 import CloseIcon from '@mui/icons-material/Close';
 
-
 export default function Header() {
   const dispatch = useDispatch();
   const modelNow = useSelector((state: IRootState) => state.models.model);
@@ -97,7 +96,10 @@ export default function Header() {
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const handleClick = () => {
-    if (hiddenFileInput.current !== null) {
+    if (!isSign){
+      router.push('/sign-in');
+    }
+    else if (hiddenFileInput.current !== null) {
       hiddenFileInput.current.click();
     }
   };
@@ -157,7 +159,6 @@ export default function Header() {
   };
 
   const searchMobileRef = useRef<HTMLDivElement>(null);
-
 
   const handleSearch = () => {
     searchMobileRef.current?.classList.toggle('header__search--active');
@@ -224,14 +225,16 @@ export default function Header() {
               </IconButton>
             </Tooltip>
 
-            <input
-              ref={hiddenFileInput}
-              id="upload"
-              type="file"
-              name="upload"
-              onChange={musicchanged}
-              required
-            />
+            {isSign && (
+              <input
+                ref={hiddenFileInput}
+                id="upload"
+                type="file"
+                name="upload"
+                onChange={musicchanged}
+                required
+              />
+            )}
           </Box>
 
           <Box>
