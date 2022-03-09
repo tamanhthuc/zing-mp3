@@ -146,6 +146,8 @@
       &__person {
         margin-left: 10px;
         @include flex(center, center);
+
+     
       }
 
       &__search {

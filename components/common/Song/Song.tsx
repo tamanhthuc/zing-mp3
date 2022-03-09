@@ -140,7 +140,7 @@ export default function Song({ tracks }: IMusicProps) {
     dispatch(addYourPlaylists(song));
   };
 
-  // const value= useContext(ModelContext);
+ 
   const songRef = useRef();
   const { backgroundUrl, setBackgroundUrl }: any = useContext(ThemeContext);
 

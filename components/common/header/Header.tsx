@@ -22,6 +22,7 @@ import { IRootState } from '../../../redux/reducers';
 import { ROUTE_LIST } from '../Menu/routes';
 import { ROUTE_LIST__BOTTOM } from '../Menu/routesBottom';
 import CloseIcon from '@mui/icons-material/Close';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -288,7 +289,7 @@ export default function Header() {
             {isAvatar ? (
               <Avatar alt="Remy Sharp" src={avatar} sx={{ width: 35, height: 35 }} />
             ) : (
-              <PersonOutlineIcon />
+              <AccountCircleIcon sx={{transform:"scale(1.3)"}} />
             )}
           </div>
         </div>
