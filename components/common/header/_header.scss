@@ -62,7 +62,7 @@
       position: relative;
 
       @include tablet {
-        min-width: 400px;
+        min-width: 390px;
       }
 
       @include mobile {
@@ -96,7 +96,6 @@
           outline: none;
         }
 
-       
 
         @include mobile {
           width: 90%;
