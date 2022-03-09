@@ -9,7 +9,7 @@ export default function Follow() {
   const singerModel = useSelector((state:IRootState) => state.models.singerModel);
 
   return (
-    <Box sx={{ ml: '30px', mr: '30px', mt: '90px', mb: '100px', position: 'relative' }}>
+    <Box sx={{  mr: '30px', mt: '90px', mb: '100px', position: 'relative' }}>
       <ListSinger />
     </Box>
   );

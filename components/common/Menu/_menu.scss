@@ -1,0 +1,130 @@
+// .menu__top__list__item--active {
+//   background-color: hsla(0, 0%, 100%, 0.1);
+
+//   border-left: 3px solid rgb(124, 6, 118);
+// }
+
+.menu {
+  //   background-color: rgb(35, 27, 46);
+  position: fixed;
+  height: 100vh;
+  z-index: 4;
+  width: 242px;
+  animation-duration: 2s;
+  top: 0;
+  bottom: 0;
+
+
+
+  @include tablet {
+      width: 70px;
+     
+  }
+  @include mobile {
+    display: none;
+  }
+
+  &__top {
+    padding-bottom: 16px;
+    
+
+    &__logo {
+      width: 125px;
+      height: 40px;
+      margin-top: 15px;
+      margin-left: 24px;
+      cursor: pointer;
+
+      @include tablet {
+        margin-top: 40px;
+        width: 40px;
+        height: 40px;
+        margin-left: 12px;
+        border-radius: 50%;
+        content: url('https://static-zmp3.zadn.vn/skins/common/logo600.png');
+        
+
+      }
+
+      &:hover {
+          opacity: 0.9;
+      }
+    }
+
+    &__list {
+      &__item {
+        color: rgb(211, 216, 218);
+        cursor: pointer;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        padding: 8px 30px;
+        font-size: 1.2rem;
+
+
+        
+
+        @include tablet{
+          padding-left: 0;
+          margin-left: 20px;
+
+          @include flex(center, center);
+
+          
+        }
+
+        &--active {
+            color: white;
+        }
+
+        &:hover {
+          color: #fff;
+        }
+        height: 40px;
+
+        &--icon {
+            transform: scale(1.2);
+            
+            @include tablet {
+              transform: scale(1);
+              padding-left: 0;
+              margin: 10px 15px -8px 13px;
+
+            }
+        }
+
+        &--name {
+          margin-left: 12px;
+          font-weight: 600;
+          font-size: 14px;
+          user-select: none;
+
+          @include tablet {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes reponsiveMenu {
+  0% {
+    opacity: 1;
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+.line {
+  border-bottom: 1px solid rgb(85, 84, 84) ;
+  margin: 0 30px;
+
+  @include tablet {
+    display: none;
+  }
+
+}

@@ -2,8 +2,9 @@ import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { setSongModel } from '../../redux/actions/model';
-
+import { Pagination, Autoplay} from 'swiper';
 const lists = [
   {
     image: 'https://photo-zmp3.zadn.vn/banner/2/4/b/c/24bc227b35af337e66f0b9f25bc6487b.jpg',
@@ -39,22 +40,38 @@ export default function Slider() {
   };
 
   return (
-    <Box sx={{ width: '100%', pt: '30px', pb: '20px', pr: '80px', pl: '50px', color: '#fff' }}>
-      <Grid container spacing={2}>
-        {lists.map((item, idx) => {
-          return (
-            <Grid item xs={6} md={4} sm={6} key={idx}>
-              <Box onClick={() => handleSlider(item)}>
-                <Box
-                  component="img"
-                  src={item.image}
-                  className={`slider_img slider_img__${item.key}`}
-                ></Box>
-              </Box>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </Box>
+    <>
+      <Box className="slider">
+        <Grid container spacing={2}>
+          {lists.map((item, idx) => {
+            return (
+              <Grid item xs={6} md={4} sm={6} key={idx}>
+                <Box onClick={() => handleSlider(item)}>
+                  <Box
+                    component="img"
+                    src={item.image}
+                    className={`slider__img slider__img__${item.key}`}
+                  ></Box>
+                </Box>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+
+      <div className="slider__mobile">
+        <Swiper pagination={true} autoplay={true} modules={[Pagination,Autoplay]} className="mySwiper">
+          {lists.map((item, idx) => {
+            return (
+              <SwiperSlide key={idx}>
+                <div onClick={() => handleSlider(item)}>
+                  <img src={item.image} alt=""></img>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    </>
   );
 }

@@ -21,6 +21,10 @@
     border-radius: 10px;
     border-bottom: 1px solid rgb(58, 45, 45);
 
+    @include mobile {
+      border: none;
+    }
+
     &:hover {
       background-color:  hsla(0,0%,100%,0.1);
 
@@ -59,6 +63,12 @@
       color: rgba(74, 144, 226, 0);
       white-space: nowrap;
       margin-right: 15px;
+
+      @include mobile {
+        font-size: 16px;
+        -webkit-text-stroke: 1.5px black;
+ 
+      }
     }
 
     &__wrap {
@@ -94,12 +104,23 @@
         font-size: 16px;
         cursor: default;
         color: #fff;
+
+        @include tablet {
+          font-size: 12px;
+        }
+        
+        @include mobile {
+          color: #a0a0a0;
+        }
+       
         
       }
       &__singer {
         font-size: 0.8rem;
         color: rgb(102, 99, 99);
         cursor: default;
+
+       
       }
     }
   }
@@ -107,12 +128,29 @@
   &__singer {
     color: rgb(102, 99, 99);
     font-size: 14px;
+
+    @include tablet {
+      @include flex(center, center);
+    }
+
+
+    @include mobile {
+      display: none;
+    }
   }
 
   &__duration {
     color: rgb(102, 99, 99);
     font-size: 14px;
     margin-right: 30px;
+
+    @include tablet {
+      @include flex(center, center);
+    }
+
+    @include mobile {
+      display: none;
+    }
   }
 
   &__icon {
@@ -125,6 +163,10 @@
       transform: scale(0.8);
       color: #fff;
       cursor: pointer;
+    }
+
+    @include mobile {
+      display: none;
     }
 
     &__more {

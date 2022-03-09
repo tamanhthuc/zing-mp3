@@ -3,6 +3,12 @@
     margin-left: 20px;
     margin-right: 100px;
     position: relative;
+
+    @include mobile {
+      display: none;
+    }
+    
+ 
   
     &__title {
       color: #fff;
@@ -40,6 +46,10 @@
       height: 20px;
       background-color: #fff;
     }
+
+    &__line {
+      height: 80%;
+    }
   }
   
   .song__data {
@@ -49,6 +59,10 @@
     overflow: hidden;
     width: 100%;
     opacity: 1;
+
+    @include mobile {
+      display: none;
+    }
     
     
   
@@ -66,3 +80,9 @@
       }
     }
   }
+
+#chartjs-tooltip{
+  @include tablet {
+    display: none;
+  }
+}

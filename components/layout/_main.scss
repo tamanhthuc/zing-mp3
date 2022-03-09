@@ -1,0 +1,59 @@
+.div__model {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(102, 103, 103, 0.5);
+  z-index: 102;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.div__menu {
+  position: relative;
+}
+
+.model__slider {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 105;
+}
+.overlay {
+}
+
+.div__playlist {
+  position: relative;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  max-width: 100%;
+  height: 100vh;
+  z-index: 999;
+}
+
+.model__singer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  @include flex(center, center);
+
+  @include mobile {
+    display: none;
+  }
+ 
+}

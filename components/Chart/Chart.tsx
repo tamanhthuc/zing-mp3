@@ -66,6 +66,7 @@ export default function   Chart({ songNew }: IMusciProps) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: 'top' as const,
@@ -173,7 +174,7 @@ export default function   Chart({ songNew }: IMusciProps) {
           <PlayArrowIcon className="chart__title__icon__item" onClick={handleRandom} />
         </div>
       </div>
-      <Line options={options} data={data} height={'80%'} className="line" />;
+      <Line options={options} data={data} height="100%" className="chart__line" />;
       <div id="chartjs-tooltip">
         <div className="song__data ">
           <div className="song__data__left">

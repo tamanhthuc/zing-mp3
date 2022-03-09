@@ -1,16 +1,18 @@
 .playlist {
-  z-index: 99;
+  z-index: 998;
   position: fixed;
   top: 0;
-  
   right: 0;
   color: white;
-  // background-color: rgb(18, 8, 34);
   max-width: 330px;
   border: 1px solid #555555;
   transition: all 1s;
   height: 100%;
   width: 100%;
+
+  @include mobile {
+    max-width: 100%;
+  }
   
 
   &__header {

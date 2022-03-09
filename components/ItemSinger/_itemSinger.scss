@@ -1,0 +1,73 @@
+.itemSinger {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  padding: 20px;
+  box-shadow: 0 2px 10px 0;
+  border-radius: 8px;
+  position: relative;
+  color: #fff;
+  margin-top: 20px;
+  
+  margin-bottom: 50px;
+  cursor: pointer;
+
+  @include mobile {
+      margin-bottom: 10px;
+      padding-top: 0;
+  }
+
+  &__list {
+    display: flex;
+
+    &__img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    &__info {
+      margin-left: 5px;
+      @include mobile {
+          color: black;
+      }
+      &__name {
+        font-size: 14px;
+      }
+
+      &__time {
+        font-size: 12px;
+        font-weight: 300;
+        color: hsla(0, 0%, 100%, 0.5);
+
+        @include mobile {
+            color: black;
+        }
+      }
+    }
+  }
+
+  &__message {
+    margin-top: 10px;
+    font-size: 14px;
+
+    @include mobile {
+        color: black;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    margin-top: 10px;
+    height: 80vh;
+    border-radius: 10px;
+    object-fit: cover;
+
+    @include tablet {
+      height: 70vh;
+      
+      
+    }
+    @include mobile {
+        height: 50vh;
+    }
+  }
+}

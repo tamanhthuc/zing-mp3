@@ -95,14 +95,14 @@ function ItemMusic({ newSong, handeMoreMenu, more , overlay,handeOverlay}: IProp
 
   return (
     <div className="music">
-      <Box
+      <div
         className="music__item"
         onMouseLeave={() => setIsHover(undefined)}
         onMouseEnter={() => setIsHover(newSong.id)}
       >
-        <Box className="music__item__model">
+        <div className="music__item__model">
           <div className={`music__item__model__wrap`} ref={overlayRef} >
-            <Box className="music__item__model__overlay"></Box>
+            <div className="music__item__model__overlay"></div>
 
             <Box
               className="music__item__model__img"
@@ -111,7 +111,7 @@ function ItemMusic({ newSong, handeMoreMenu, more , overlay,handeOverlay}: IProp
               alt="hihi"
             />
             {isHover === newSong.id ? (
-              <Box className="music__item__action">
+              <div className="music__item__action">
                 <Tooltip title="Thêm vào yêu thích" arrow placement="top">
                   <FavoriteBorderIcon
                     className="music__item__action__icon"
@@ -136,7 +136,7 @@ function ItemMusic({ newSong, handeMoreMenu, more , overlay,handeOverlay}: IProp
                     <span>...</span>
                   </div>
                 </Tooltip>
-              </Box>
+              </div>
             ) : (
               isBass(newSong.id)
             )}
@@ -144,8 +144,8 @@ function ItemMusic({ newSong, handeMoreMenu, more , overlay,handeOverlay}: IProp
 
           <Box className="music__item-name">{newSong.name}</Box>
           <div className="music__item-singer">{newSong.singer}</div>
-        </Box>
-      </Box>
+        </div>
+      </div>
       <div className="music__more" ref={moreRef}>
         {moreNow && <WatchMore />}
       </div>

@@ -1,6 +1,9 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import MenuIcon from '@mui/icons-material/Menu';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -10,13 +13,16 @@ import axios from 'axios';
 import firebase from 'firebase/compat/app';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThemeContext } from '../../../context/ThemeContext';
 import { isSignIn, setModelAgain } from '../../../redux/actions/model';
 import { searchMusics } from '../../../redux/actions/music';
 import { IRootState } from '../../../redux/reducers';
-import { ThemeContext } from '../../../context/ThemeContext';
+import { ROUTE_LIST } from '../Menu/routes';
+import { ROUTE_LIST__BOTTOM } from '../Menu/routesBottom';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -27,6 +33,8 @@ export default function Header() {
   const [musicUrl, setMusicUrl] = useState('');
   const [nameUrl, setNameUrl] = useState(null);
   const [search, setSearch] = useState('');
+  const [userName, setUserName] = useState('');
+  const [isSearchIcon, setIsSearchIcon] = useState(false);
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setBackgroundUrl('blue')
@@ -49,6 +57,7 @@ export default function Header() {
   const router = useRouter();
   const value = useContext(ThemeContext);
   const { backgroundUrl, setBackgroundUrl }: any = value;
+  const isSign = useSelector((state: IRootState) => state.models.isSign);
 
   const headerRef = useRef<HTMLDivElement>(null!);
   useEffect(() => {
@@ -65,14 +74,16 @@ export default function Header() {
         // user log out
         setIsAvatar(false);
         dispatch(isSignIn(false));
+        setUserName('Đăng nhập');
 
-        console.log('User is not logged in');
         return;
       } else {
         dispatch(isSignIn(true));
         setIsAvatar(true);
-        if (user && user.photoURL) {
+
+        if (user && user.photoURL && user.displayName) {
           setAvatar(user.photoURL);
+          setUserName(user.displayName);
         }
         console.log('user', user.photoURL);
         const token = await user.getIdToken();
@@ -82,23 +93,21 @@ export default function Header() {
     return () => unregisterAuthObserver();
   }, []);
 
-  
   const handleButton = () => {};
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const handleClick = () => {
-    if (hiddenFileInput.current !== null){
-
+    if (hiddenFileInput.current !== null) {
       hiddenFileInput.current.click();
     }
   };
 
-  const musicchanged = async (e:any) => {
+  const musicchanged = async (e: any) => {
     var music = e.target.files[0];
     var storagemRef = firebase.storage().ref('Music');
-    const musicRef : any = storagemRef.child(music.name);
+    const musicRef: any = storagemRef.child(music.name);
     await musicRef.put(music);
-    setMusicUrl( musicRef.getDownloadURL());
+    setMusicUrl(musicRef.getDownloadURL());
     setNameUrl(music?.name);
   };
 
@@ -113,21 +122,50 @@ export default function Header() {
 
   useEffect(() => {
     if (musicUrl) {
-      postData(musicUrl)
+      postData(musicUrl);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [musicUrl]);
+
+  const navRef = useRef<HTMLDivElement>(null);
+  const overRef = useRef<HTMLDivElement>(null);
+  const handleMenu = () => {
+    navRef.current?.classList.toggle('header__nav--active');
+    overRef.current?.classList.toggle('header__overlay--active');
+  };
+
+  const handleCancel = () => {
+    navRef.current?.classList.toggle('header__nav--active');
+    overRef.current?.classList.toggle('header__overlay--active');
+  };
+
+  const handleOverlay = () => {
+    navRef.current?.classList.toggle('header__nav--active');
+    overRef.current?.classList.toggle('header__overlay--active');
+  };
+
+  const handleLink = () => {
+    navRef.current?.classList.toggle('header__nav--active');
+    overRef.current?.classList.toggle('header__overlay--active');
+  };
+
+  const handleOutSign = () => {
+    firebase.auth().signOut();
+    router.push('/');
+    navRef.current?.classList.toggle('header__nav--active');
+    overRef.current?.classList.toggle('header__overlay--active');
+  };
+
+  const searchMobileRef = useRef<HTMLDivElement>(null);
+
+
+  const handleSearch = () => {
+    searchMobileRef.current?.classList.toggle('header__search--active');
+    setIsSearchIcon(!isSearchIcon);
+  };
+
   return (
-    <Box
-      sx={{
-        position: 'fixed',
-        top: '0',
-        right: '0',
-        left: '240px',
-        zIndex: '98',
-        bgcolor: `${backgroundUrl}`,
-      }}
-    >
+    <>
       <div className="header" ref={headerRef}>
         <Box className="header__left">
           <ArrowBackIcon className="header__left__icon" onClick={() => router.back()} />
@@ -165,31 +203,35 @@ export default function Header() {
           </Box>
 
           <Box>
-            
-              <Tooltip
-                title="Tải lên"
-                arrow
-                sx={{
-                  bgcolor: ' hsla(0,0%,100%,0.1)',
-                  height: '40px',
-                  width: '40px',
-                  borderRadius: '50%',
-                  ml: '10px',
-                }}
-                onClick={handleClick}
-              >
-                <IconButton>
-                  <FileUploadIcon
-                    sx={{
-                      color: 'rgb(211,216,218)',
-                    }}
-                  />
-                </IconButton>
-              </Tooltip>
-          
-            
-              <input ref={hiddenFileInput} id="upload" type="file" name="upload" onChange={musicchanged} required />
+            <Tooltip
+              title="Tải lên"
+              arrow
+              sx={{
+                bgcolor: ' hsla(0,0%,100%,0.1)',
+                height: '40px',
+                width: '40px',
+                borderRadius: '50%',
+                ml: '10px',
+              }}
+              onClick={handleClick}
+            >
+              <IconButton>
+                <FileUploadIcon
+                  sx={{
+                    color: 'rgb(211,216,218)',
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
 
+            <input
+              ref={hiddenFileInput}
+              id="upload"
+              type="file"
+              name="upload"
+              onChange={musicchanged}
+              required
+            />
           </Box>
 
           <Box>
@@ -224,6 +266,91 @@ export default function Header() {
           </Box>
         </Box>
       </div>
-    </Box>
+
+      <div className="header__mobile">
+        <div className="header__mobile__menu" onClick={handleMenu}>
+          <MenuIcon />
+        </div>
+
+        <div className="header__mobile__logo">
+          <img src="https://static-zmp3.zadn.vn/skins/zmp3-v5.2/images/logo-mp-3.svg" />
+        </div>
+
+        <div className="header__mobile__icon">
+          <div className="header__mobile__icon__search" onClick={handleSearch}>
+            {isSearchIcon ? <CloseIcon /> : <SearchIcon />}
+          </div>
+
+          <div className="header__mobile__icon__person" onClick={handleMenu}>
+            {isAvatar ? (
+              <Avatar alt="Remy Sharp" src={avatar} sx={{ width: 35, height: 35 }} />
+            ) : (
+              <PersonOutlineIcon />
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="header__search" ref={searchMobileRef}>
+        <div className="header__search__wrap">
+          <div className="header__search__icon">
+            <SearchIcon />
+          </div>
+          <div className="header__search__input">
+            <Box
+              component="input"
+              placeholder="Tìm kiếm"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeSearch(e)}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="header__nav" ref={navRef}>
+        <div className="header__nav__signIn">
+          <div className="header__nav__signIn--icon">
+            <Link href="/sign-in" passHref>
+              {isAvatar ? (
+                <Avatar alt="Remy Sharp" src={avatar} sx={{ width: 24, height: 24 }} />
+              ) : (
+                <PersonOutlineIcon />
+              )}
+            </Link>
+          </div>
+          <Link href="/sign-in" passHref>
+            <div className="header__nav__signIn--name">{userName}</div>
+          </Link>
+        </div>
+        {ROUTE_LIST.map((route, index) => (
+          <Link key={route.id} href={route.path} passHref>
+            <div className="header__nav__list" onClick={handleLink}>
+              <div className="header__nav__list--icon">{route.icon}</div>
+              <div className="header__nav__list--name">{route.label}</div>
+            </div>
+          </Link>
+        ))}
+        {ROUTE_LIST__BOTTOM.map((route, index) => (
+          <Link key={route.id} href={route.path} passHref>
+            <div className="header__nav__list" onClick={handleLink}>
+              <div className="header__nav__list--icon">{route.icon}</div>
+              <div className="header__nav__list--name">{route.label}</div>
+            </div>
+          </Link>
+        ))}
+
+        {isSign && (
+          <div className="header__nav__list" onClick={handleOutSign}>
+            <div className="header__nav__list--icon">
+              <ExitToAppIcon />
+            </div>
+            <div className="header__nav__list--name">Đăng xuất</div>
+          </div>
+        )}
+
+        <div className="header__nav__cancel" onClick={handleCancel}>
+          <CloseIcon />
+        </div>
+      </div>
+      <div className="header__overlay" onClick={handleOverlay} ref={overRef}></div>
+    </>
   );
 }

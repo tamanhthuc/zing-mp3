@@ -1,0 +1,281 @@
+.header {
+  color: white;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  // padding: 0 30px;
+  position: relative;
+  overflow-x: hidden;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 240px;
+  z-index: 9;
+
+  @include tablet {
+    padding: 15px 0 0 15px;
+    justify-content: space-between;
+    left: 60px;
+    margin-right: 15px;
+    font-size: 10px;
+  }
+
+  @include mobile {
+    height: 70px;
+    display: none;
+  }
+
+  &__left {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @include mobile {
+      width: 68%;
+    }
+
+    &__icon {
+      transform: scale(1);
+      cursor: pointer;
+      color: rgb(161, 160, 160);
+      display: block;
+
+      @include mobile {
+        display: none !important;
+      }
+
+      &__right {
+        margin: 0 25px;
+      }
+    }
+
+    &__search {
+      // background-color: rgb(47, 39, 57);
+      background-color: hsla(0, 0%, 100%, 0.1);
+      height: 40px;
+      min-width: 550px;
+      width: 100%;
+      display: flex;
+      border-radius: 40px;
+      align-items: center;
+      position: relative;
+
+      @include tablet {
+        min-width: 400px;
+      }
+
+      @include mobile {
+        min-width: 50px;
+      }
+
+      &__icon {
+        transform: scale(1.2);
+        line-height: 40px;
+        margin-left: 10px;
+        // margin-right: 5px;
+        cursor: pointer;
+        opacity: 0.6;
+      }
+
+      &__input {
+        position: relative;
+        width: 90%;
+        padding-left: 5px;
+        padding-right: 20px;
+        color: rgb(176, 174, 179);
+        // background-color: rgb(47, 39, 57);
+        background-color: transparent;
+        background-clip: padding-box;
+        line-height: 34px;
+        border: 0;
+        font-size: 1rem;
+        display: inline-block;
+
+        &:focus {
+          outline: none;
+        }
+
+       
+
+        @include mobile {
+          width: 90%;
+        }
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 30px;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    display: none;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #fff;
+    padding: 0 20px;
+   
+
+    @include mobile {
+      display: block;
+      @include flex(center, space-between);
+    }
+
+    &__logo {
+      padding-top: 10px;
+      img {
+        height: 32px;
+        width: 100px;
+      }
+    }
+
+    &__icon {
+      @include flex(center, center);
+
+      &__person {
+        margin-left: 10px;
+        @include flex(center, center);
+      }
+
+      &__search {
+        @include flex(center, center);
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  &__search {
+    
+    
+    margin-top: 49px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #f7f7f7;
+    z-index: 99;
+    transform: translateY(-100%);
+    transition: transform ease-in 0.2s;
+
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+
+    &--active {
+      transform: translateY(0);
+    }
+   
+   
+   
+   &__wrap {
+     border: 1px solid #ccc;
+     display: flex;
+     margin-left: 20px;
+     margin-right: 20px;
+     padding: 5px 10px;
+     margin-top: 10px;
+   }
+   
+   
+
+
+    @include mobile {
+      // display: block;
+    }
+
+
+    &__icon {
+      margin-right: 5px;
+      transform: scale(1.2);
+    }
+
+    &__input {
+      input {
+        outline: none;
+        border: none;
+        height: 22px;
+
+        margin-top: 3px;
+      }
+    }
+  }
+
+  &__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f7f7f7;
+    width: 90vw;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+
+    &--active {
+      transform: translateX(0);
+    }
+
+    &__list {
+      @include flex(center, flex-start);
+      margin-top: 20px;
+      margin-left: 20px;
+      &--name {
+        margin-left: 10px;
+      }
+    }
+
+    &__cancel {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      transform: scale(1.5);
+    }
+
+    &__signIn {
+      margin-left: 25px;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      @include flex(center, flex-start);
+
+      &--icon {
+        transform: scale(2);
+        margin-right: 30px;
+      }
+
+      &--name {
+        font-weight: 700;
+        font-size: 16px;
+        @include flex(center, center);
+      }
+    }
+  }
+  &__overlay {
+    background-color: rgba(42, 43, 63, 0.74);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+}

@@ -18,7 +18,11 @@ import { ModelContext } from '../../../context/ModelContext';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isRunning, Next } from '../../../redux/actions/music';
-import { addYourPlaylists, listenedPlaylists, setOpenPlaylists } from '../../../redux/actions/playlists';
+import {
+  addYourPlaylists,
+  listenedPlaylists,
+  setOpenPlaylists,
+} from '../../../redux/actions/playlists';
 import { IRootState } from '../../../redux/reducers';
 import { IsongProps } from '../ListMusic/ListMusic';
 import { ThemeContext } from '@emotion/react';
@@ -27,7 +31,6 @@ interface IMusicProps {
 }
 
 export default function Song({ tracks }: IMusicProps) {
- 
   const dispatch = useDispatch();
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
@@ -41,7 +44,7 @@ export default function Song({ tracks }: IMusicProps) {
   const openPlayList = useSelector<IRootState>((state) => state.playlists.isOpen);
   const queueRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(isRunningMusic);
-  
+
   const audioRef = useRef(new Audio(song));
   audioRef.current.volume = volume / 100;
   const intervalRef: {
@@ -52,22 +55,20 @@ export default function Song({ tracks }: IMusicProps) {
 
   const handleOpenPlaylists = () => {
     dispatch(setOpenPlaylists(!openPlayList));
-  
   };
 
   const [volumeOld, setVolumeOld] = useState<Number>(100);
 
-  
   const handleChange = (e: Event, newValue: number | number[]) => {
     setVolume(newValue);
     audioRef.current.volume = volume / 100;
-    setVolumeOld(volume)
+    setVolumeOld(volume);
   };
- 
+
   const handleSlider = () => {
-    setVolumeOld(volume)
-  }
-  
+    setVolumeOld(volume);
+  };
+
   const startTimer = () => {
     clearInterval(intervalRef.current as NodeJS.Timeout);
     intervalRef.current = setInterval(() => {
@@ -95,7 +96,6 @@ export default function Song({ tracks }: IMusicProps) {
       dispatch(isRunning(isPlaying));
       dispatch(listenedPlaylists(tracks[trackIndex]));
       startTimer();
-      
     } else {
       audioRef.current.pause();
       dispatch(isRunning(isPlaying));
@@ -126,12 +126,11 @@ export default function Song({ tracks }: IMusicProps) {
     Math.floor(trackProgress - Math.floor(trackProgress / 60) * 60) < 10
       ? `0${Math.floor(trackProgress - Math.floor(trackProgress / 60) * 60)}`
       : `${Math.floor(trackProgress - Math.floor(trackProgress / 60) * 60)}`;
-  let timeAfter = Math.floor(duration - Math.floor(duration / 60) * 60)
+  let timeAfter = Math.floor(duration - Math.floor(duration / 60) * 60);
 
   const toNextTrack = () => {
     dispatch(Next(Number(tracks[0]?.id) + 1));
   };
-
 
   const toPreTrack = () => {
     dispatch(Next(Number(tracks[0]?.id) > 0 ? Number(tracks[0]?.id) - 1 : Number(tracks[0]?.id)));
@@ -142,10 +141,9 @@ export default function Song({ tracks }: IMusicProps) {
   };
 
   // const value= useContext(ModelContext);
-  const songRef = useRef()
-  const {backgroundUrl, setBackgroundUrl}:any = useContext(ThemeContext)
+  const songRef = useRef();
+  const { backgroundUrl, setBackgroundUrl }: any = useContext(ThemeContext);
 
-  
   return (
     <>
       {tracks.length !== 0 ? (
@@ -188,7 +186,6 @@ export default function Song({ tracks }: IMusicProps) {
                     width: '30px',
                     height: '30px',
                     borderRadius: '50%',
-                    
                   }}
                 >
                   <IconButton>
@@ -199,7 +196,6 @@ export default function Song({ tracks }: IMusicProps) {
                         top: '50%',
                         left: '50%',
                         transform: ' translate(-50%, -50%)',
-                      
                       }}
                     >
                       ...
@@ -264,16 +260,15 @@ export default function Song({ tracks }: IMusicProps) {
                   min="0"
                   step="1"
                   max={duration ? duration : 0}
-                  className="progress"
-                  style={{ width: '400px', height: '10px', cursor: 'pointer' }}
+                  className="song__controls__time--input"
                   onMouseLeave={() => setIsHoverProgress(false)}
                   onChange={(e) => onScrub(e.target.value)}
                 />
               ) : (
-                <Box sx={{ width: '400px', height: '10px' }} className="box__progress">
+                <Box className="song__controls__time--icon">
                   <LinearProgress
                     color="inherit"
-                    sx={{ color: 'secondary.main', width: '100%', cursor: 'pointer' }}
+                    sx={{ width: '100%', cursor: 'pointer' }}
                     onMouseEnter={() => setIsHoverProgress(true)}
                     variant="determinate"
                     valueBuffer={100}
@@ -285,21 +280,25 @@ export default function Song({ tracks }: IMusicProps) {
 
               {duration ? (
                 <Box className="song__controls__time__end">
-                  0{Math.floor(duration / 60)}: 
-                  { timeAfter === 0 ? '00' : timeAfter}
+                  0{Math.floor(duration / 60)}:{timeAfter === 0 ? '00' : timeAfter}
                 </Box>
               ) : (
-                <Box className="song__controsl__time__end">00:00</Box>
+                <Box className="song__controls__time__end">00:00</Box>
               )}
             </Box>
           </Box>
 
           <Box className="song__action">
             <Box className="song__action__left">
-              <VideoLibraryIcon  className="song__action__left__icon song__action__left__icon-mv" />
-              <MicExternalOnIcon className="song__action__left__icon song__action__left__icon-mic" />
+              <div className="song__action__left__icon">
+                <VideoLibraryIcon className="song__action__left__icon song__action__left__icon-mv" />
+                <MicExternalOnIcon className="song__action__left__icon song__action__left__icon-mic" />
+              </div>
               {volume === 0 ? (
-                <VolumeOffIcon className="song__action__left__icon" onClick={() => setVolume(volumeOld > 0 ? volumeOld : 50  )} />
+                <VolumeOffIcon
+                  className="song__action__left__icon"
+                  onClick={() => setVolume(volumeOld > 0 ? volumeOld : 50)}
+                />
               ) : (
                 <VolumeUpIcon className="song__action__left__icon" onClick={() => setVolume(0)} />
               )}
@@ -310,8 +309,8 @@ export default function Song({ tracks }: IMusicProps) {
                 value={volume}
                 className="volume__slider"
                 onChange={handleChange}
-               onClick={handleSlider}
-              />  
+                onClick={handleSlider}
+              />
             </Box>
 
             <Box className="song__action__separate ">|</Box>
@@ -319,7 +318,7 @@ export default function Song({ tracks }: IMusicProps) {
             <QueueMusicIcon
               className="song__action-icon song__action__listPlay"
               onClick={handleOpenPlaylists}
-            ref={queueRef}
+              ref={queueRef}
             />
           </Box>
         </Box>

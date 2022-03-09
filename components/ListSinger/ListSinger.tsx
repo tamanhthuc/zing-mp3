@@ -1,4 +1,3 @@
-
 import ItemSinger from '../ItemSinger/ItemSinger';
 import { Box, Grid } from '@mui/material';
 import axios from '../../pages/api/axios';
@@ -13,12 +12,11 @@ export interface IListSingerProps {
   id: string;
   image: string;
   time: string;
-  comments: string
+  comments: string;
 }
 
-
 export default function ListSinger() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [singerList, setSingerList] = useState<IListSingerProps[]>([]);
 
   const getData = async () => {
@@ -30,19 +28,18 @@ export default function ListSinger() {
     getData();
   }, []);
 
-  const handleSinger = (singerItem:any) => {
-    console.log(singerItem)
-    dispatch(setSingerModel(singerItem))
-  }
+  const handleSinger = (singerItem: any) => {
+    console.log(singerItem);
+    dispatch(setSingerModel(singerItem));
+  };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       {singerList?.map((singerItem) => {
         return (
-          <Grid item key={singerItem.id} xs={6}>
+          <Grid item key={singerItem.id} lg={6} md={6} xs={6}>
             <Box onClick={() => handleSinger(singerItem)}>
-
-            <ItemSinger singerItem={singerItem} />
+              <ItemSinger singerItem={singerItem} />
             </Box>
           </Grid>
         );

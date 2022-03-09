@@ -1,0 +1,53 @@
+.mymusic {
+  margin-top: 100px;
+  position: relative;
+
+  &__avatar {
+    width: 90px;
+    height: 90px;
+    margin-top: 30px;
+
+    @include flex(center, center);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @include mobile {
+    display: none;
+  }
+
+  &__mobile {
+    margin-top: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    color: #888;
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+
+    &__button {
+      @include flex(center, center);
+      margin-top: 40px;
+      background-color: #65509e;
+      color: #fcfcfc;
+      text-align: center;
+      display: inline-flex;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      img {
+        height: 25px;
+        width: 25px;
+      }
+
+      &__name {
+        margin-left: 5px;
+      }
+    }
+  }
+}

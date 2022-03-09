@@ -37,7 +37,7 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "sass": "^1.43.4",
-    "swiper": "^7.3.0",
+    "swiper": "^8.0.7",
     "zingchart": "^2.9.7",
     "zingmp3-api-full": "^1.0.2"
   },

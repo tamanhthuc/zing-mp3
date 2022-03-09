@@ -10,48 +10,22 @@ export interface IItemSingerProps {
     id: string;
     image: string;
     time: string;
-    comments: string
+    comments: string;
   };
 }
 
 export default function ItemSinger({ singerItem }: IItemSingerProps) {
-  console.log("ItemSinger", singerItem)
-  
   return (
-    <Box
-      sx={{
-        bgcolor: 'hsla(0,0%,100%,0.1)',
-        p: '20px',
-        boxShadow: '0 2px 10px 0',
-        borderRadius: '8px',
-        position: 'relative',
-        color: '#fff',
-        width: '499px',
-        mb: '50px',
-        cursor: 'pointer',
-      }}
-    >
-      <Box sx={{ display: 'flex' }}>
-        <Box
-          sx={{ width: '50px', height: '50px', borderRadius: '50%' }}
-          component="img"
-          src={singerItem.avatar}
-          alt="dd"
-        />
-        <Box sx={{ ml: '6px' }}>
-          <Box sx={{ fontSize: '14px' }}>{singerItem.name}</Box>
-          <Box sx={{ fontSize: '12px', fontWeight: '300', color: 'hsla(0,0%,100%,0.5)' }}>
-            {singerItem.time}
-          </Box>
+    <Box className="itemSinger">
+      <Box className="itemSinger__list">
+        <Box component="img" src={singerItem.avatar} alt="dd" className="itemSinger__list__img" />
+        <Box className="itemSinger__list__info">
+          <Box className="itemSinger__list__info__name">{singerItem.name}</Box>
+          <Box className="itemSinger__list__info__time">{singerItem.time}</Box>
         </Box>
       </Box>
-      <Box sx={{ mt: '10px', fontSize: '14px' }}>{singerItem.message}</Box>
-      <Box
-        component="img"
-        src={singerItem.image}
-        alt=""
-        sx={{ width: '100%', mt: '10px', height: '80vh', borderRadius: '10px', objectFit: 'cover' }}
-      />
+      <Box className="itemSinger__message">{singerItem.message}</Box>
+      <img  className="itemSinger__img" src={singerItem.image} alt="" />
 
       <Box sx={{ display: 'flex', mt: '10px', alignItems: 'center' }}>
         <Box sx={{ display: 'flex', mr: '20px' }}>

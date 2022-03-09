@@ -159,20 +159,8 @@ export function MainLayout({ children }: LayoutProps) {
 
         {singerModel?.id > 0 && (
           <Box
-            sx={{
-              position: 'fixed',
-              top: '0',
-              right: '0',
-              left: '0',
-              bottom: '0',
-              width: "100%",
-              height: "100%",
-              bgcolor: 'rgba(0,0,0,0.8)',
-              zIndex: '9999',
-              display: "flex",
-              justifyContent:"center",
-              alignItems:"center",
-            }}
+            
+            className="model__singer"
             onClick={() => dispatch(setSingerModel({name: "", id: "", image:"", avatar: "", message: "", time: ""}))}
           >
             <ModelSinger singerModel={singerModel} />
