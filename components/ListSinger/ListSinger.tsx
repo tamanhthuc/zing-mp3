@@ -37,7 +37,7 @@ export default function ListSinger() {
     <Grid container spacing={1}>
       {singerList?.map((singerItem) => {
         return (
-          <Grid item key={singerItem.id} lg={6} md={6} xs={6}>
+          <Grid item key={singerItem.id} lg={6} sm={6} xs={12}>
             <Box onClick={() => handleSinger(singerItem)}>
               <ItemSinger singerItem={singerItem} />
             </Box>

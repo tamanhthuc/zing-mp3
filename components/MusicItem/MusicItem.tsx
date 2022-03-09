@@ -81,7 +81,7 @@ export default function MusicItem({ music, index , onDelete}: IMusicProps) {
         alignItems="center"
         sx={{ mt: '10px', mb: '10px' }}
       >
-        <Grid item lg={4} xs={4} md={4} >
+        <Grid item xs={12} sm={6} lg={4} >
           <div className="topMusic__info">
             <div className={`topMusic__info__index ${styleIndexTop(index)}`}>{index + 1}</div>
             <div className="topMusic__info__wrap">
@@ -100,10 +100,10 @@ export default function MusicItem({ music, index , onDelete}: IMusicProps) {
             </div>
           </div>
         </Grid>
-        <Grid item xs={4} md={4} lg={4}>
+        <Grid item xs={0} sm={3} lg={4}>
           <div className="topMusic__singer">{music.singer} (Single)</div>
         </Grid>
-        <Grid item md={4} lg={4} xs={4}>
+        <Grid item xs={0} sm={3} lg={4} >
           <div className="topMusic__icon topMusic__detail__icon__active">
             <Tooltip title="Phát cùng lời bài hát" arrow placement="top">
               <MicExternalOnIcon className="topMusic__icon__item" />
