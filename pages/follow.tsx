@@ -9,9 +9,9 @@ export default function Follow() {
   const singerModel = useSelector((state:IRootState) => state.models.singerModel);
 
   return (
-    <Box sx={{  mr: '30px', mt: '90px', mb: '100px', position: 'relative' }}>
+    <div className="follow">
       <ListSinger />
-    </Box>
+    </div>
   );
 }
 Follow.Layout = MainLayout;

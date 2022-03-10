@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import { ModelContext } from '../../../context/ModelContext';
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../../redux/reducers';
 import ItemMusic from './ItemMusic';
@@ -83,6 +83,8 @@ export default function ListMusic() {
       handeOverlay(runningMusic[0].id);
     }
   }, [runningMusic]);
+
+  
 
   return (
     <>

@@ -28,12 +28,7 @@ export default function SignIn (props: ISignInProps) {
   const isSign = useSelector((state: IRootState) => state.models.isSign);
 
   const router = useRouter();
-  const value = useContext(ThemeContext);
-  const { backgroundUrl, setBackgroundUrl }: any = value;
 
-  useEffect(() => {
-    document.body.style.background = `${backgroundUrl}`;
-  }, [backgroundUrl]);
   
   useEffect(() => {
     if (isSign){
@@ -43,7 +38,7 @@ export default function SignIn (props: ISignInProps) {
 
   return (
     <Box sx={{height: "100vh", maxWidth: "100%"}}>
-       {!isSign && <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />}
+       {!isSign && <StyledFirebaseAuth  uiConfig={uiConfig} firebaseAuth={firebase.auth()} />}
     </Box>
   );
 }

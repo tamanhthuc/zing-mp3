@@ -31,7 +31,7 @@ export default function ZingChart() {
    return Math.floor(Math.random() * max );
  } 
  let LengthData = getRanDomInt(data.length);
- let songNew = data?.find(data => data.id === LengthData.toString())
+ let songNew = data?.find(data => data.id === LengthData.toString());
  const [model, setModel] = useState(true)
 const handleClick = () => {
   setModel(false)

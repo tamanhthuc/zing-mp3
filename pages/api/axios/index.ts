@@ -28,7 +28,7 @@ function Request() {
         url,
         method,
       }
-      console.log("Config Request API: ", config)
+      
       let response = await axios(config);
       let { data } = response;
       return data;// return [data, null, data?.message, response?.status];

@@ -233,10 +233,25 @@
 
     &__list {
       @include flex(center, flex-start);
-      margin-top: 20px;
+      margin-top: 30px;
       margin-left: 20px;
+      font-size: 16px;
+      color: #92929d;
+      text-transform: uppercase;
       &--name {
-        margin-left: 10px;
+        margin-left: 15px;
+      @include flex(center, center);
+
+      }
+
+      &--icon {
+        transform: scale(1.2);
+      @include flex(center, center);
+
+      }
+
+      &--active {
+        color: #65509e;
       }
     }
 

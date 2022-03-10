@@ -35,6 +35,9 @@ export default function Header() {
   const [search, setSearch] = useState('');
   const [userName, setUserName] = useState('');
   const [isSearchIcon, setIsSearchIcon] = useState(false);
+  const { pathname } = useRouter();
+  const activeNav = ROUTE_LIST.findIndex((e) => e.path === pathname);
+  const activeNavBottom = ROUTE_LIST__BOTTOM.findIndex((e) => e.path === pathname);
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setBackgroundUrl('blue')
@@ -85,7 +88,7 @@ export default function Header() {
           setAvatar(user.photoURL);
           setUserName(user.displayName);
         }
-        console.log('user', user.photoURL);
+       
         const token = await user.getIdToken();
       }
     });
@@ -326,7 +329,7 @@ export default function Header() {
         </div>
         {ROUTE_LIST.map((route, index) => (
           <Link key={route.id} href={route.path} passHref>
-            <div className="header__nav__list" onClick={handleLink}>
+            <div className={`header__nav__list ${activeNav === index ? 'header__nav__list--active' : ''}`} onClick={handleLink}>
               <div className="header__nav__list--icon">{route.icon}</div>
               <div className="header__nav__list--name">{route.label}</div>
             </div>
@@ -334,7 +337,7 @@ export default function Header() {
         ))}
         {ROUTE_LIST__BOTTOM.map((route, index) => (
           <Link key={route.id} href={route.path} passHref>
-            <div className="header__nav__list" onClick={handleLink}>
+            <div className={`header__nav__list ${activeNavBottom === index ? 'header__nav__list--active' : ''}`} onClick={handleLink}>
               <div className="header__nav__list--icon">{route.icon}</div>
               <div className="header__nav__list--name">{route.label}</div>
             </div>

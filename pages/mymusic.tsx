@@ -6,8 +6,8 @@ import { Avatar, Link } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios';
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/storage';
+// import 'firebase/compat/auth';
+// import 'firebase/compat/storage';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,9 @@ interface IsongProps {
   singer: string;
   id: string;
 }
-// const storage = firebase.storage();
+
+
+
 
 export default function MyMusic() {
   const isSign = useSelector((state: IRootState) => state.models.isSign);
@@ -100,8 +102,6 @@ export default function MyMusic() {
   const handleDelete = (id: string) => {
     console.log('id', id);
     axios.delete(`https://61b2a056c8d4640017aaf455.mockapi.io/upload/${id}`).then((res) => {
-      console.log('res', res);
-      console.log(res.data);
       getDataUpload();
     });
 
@@ -117,7 +117,7 @@ export default function MyMusic() {
 
   if (isSign) {
     return (
-      <>
+      <div id="firebaseui-auth-container">
         <Box className="mymusic">
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {info && info.photoURL && (
@@ -305,7 +305,7 @@ export default function MyMusic() {
             <div className="mymusic__mobile__button__name">Mở Zing MP3</div>
           </a>
         </div>
-      </>
+      </div>
     );
   } 
   return <Box>Ban Phai dang nhap moi vao duoc</Box>
