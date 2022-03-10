@@ -109,7 +109,7 @@
           background-color: hsla(0,0%,100%,0.1);
           border-left: 3px solid #7200a1;
 
-          @include mobile {
+          @include tablet {
             display: none;
           }
         }
