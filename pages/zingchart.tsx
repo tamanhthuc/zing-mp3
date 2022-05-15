@@ -40,6 +40,7 @@ const handleClick = () => {
   return (
     <div className="zingchart">
       <Chart songNew={songNew}/>
+      
       <div className={model ? 'zingchart__top100' : "zingchart__top100--active"}><Top data={data}/></div>
       {model && <Button name="Xem top 100" onClick={() => handleClick()}/>}
       <div className="zingchart__topWeek">
@@ -47,5 +48,6 @@ const handleClick = () => {
       </div>
     </div>
   );
+  
 }
 ZingChart.Layout = MainLayout;
